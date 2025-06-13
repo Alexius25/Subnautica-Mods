@@ -19,4 +19,8 @@ All my Subnautica Mods
 
   **Required Mods:**
   - [Nautilus](https://github.com/SubnauticaModding/Nautilus)
+
+  **Download:**
+    [Github Release](https://github.com/Alexius25/Subnautica-Mods/releases)
+  
 </details>
