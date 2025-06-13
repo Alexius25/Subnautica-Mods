@@ -6,9 +6,9 @@ All my Subnautica Mods
   <summary><strong>Subnautica Tool Config</strong></summary>
 
   <div align="center">
-    <img src="./Pages/SubnauticaToolConfig-Image-1.jpg" alt="Screenshot 1" width="300"/>
-    <img src="./Pages/SubnauticaToolConfig-Image-2.jpg" alt="Screenshot 2" width="300"/>
-    <img src="./Pages/SubnauticaToolConfig-Image-3.jpg" alt="Screenshot 3" width="300"/>
+    <img src="./Pages/SubnauticaToolConfig-Image-1.jpg" alt="Screenshot 1" width="400"/>
+    <img src="./Pages/SubnauticaToolConfig-Image-2.jpg" alt="Screenshot 2" width="400"/>
+    <img src="./Pages/SubnauticaToolConfig-Image-3.jpg" alt="Screenshot 3" width="400"/>
   </div>
 
   <br/>
