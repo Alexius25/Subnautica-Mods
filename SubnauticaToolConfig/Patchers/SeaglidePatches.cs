@@ -1,44 +1,32 @@
 ﻿using HarmonyLib;
-using UnityEngine;
+using SubnauticaToolConfig;
 using SubnauticaToolConfig.Settings;
 
-namespace SubnauticaToolConfig.Patches
+[HarmonyPatch(typeof(PlayerController))]
+public class PlayerControllerPatches
 {
-    [HarmonyPatch(typeof(Seaglide))]
-    internal static class SeaglidePatch
+    [HarmonyPatch(nameof(PlayerController.SetMotorMode))]
+    [HarmonyPrefix]
+    public static void SetMotorMode_Prefix(PlayerController __instance, Player.MotorMode newMotorMode)
     {
-        [HarmonyPatch(nameof(Seaglide.Start))]
-        [HarmonyPostfix]
-        public static void Postfix(Seaglide __instance)
-        {
-            Debug.Log($"[SeaglidePatch] Original spinUpSpeed: {__instance.GetPrivateField<float>("spinUpSpeed")}");
-            Debug.Log($"[SeaglidePatch] Original spinDownSpeed: {__instance.GetPrivateField<float>("spinDownSpeed")}");
-            Debug.Log($"[SeaglidePatch] Original maxSpinSpeed: {__instance.GetPrivateField<float>("maxSpinSpeed")}");
+        if (newMotorMode != Player.MotorMode.Seaglide) return;
 
-            float newSpinUpSpeed = ModConfig.Instance.SeaglideSpinUpSpeed;
-            float newSpinDownSpeed = ModConfig.Instance.SeaglideSpinDownSpeed;
-            float newMaxSpinSpeed = ModConfig.Instance.SeaglideMaxSpinSpeed;
+        float speedMultiplier = ModConfig.Instance.SeaglideSpeedMultiplier;
 
-            __instance.SetPrivateField("spinUpSpeed", newSpinUpSpeed);
-            __instance.SetPrivateField("spinDownSpeed", newSpinDownSpeed);
-            __instance.SetPrivateField("maxSpinSpeed", newMaxSpinSpeed);
+        if (speedMultiplier <= 0f) return;
 
-            Debug.Log($"[SeaglidePatch] Updated spinUpSpeed: {__instance.GetPrivateField<float>("spinUpSpeed")}");
-            Debug.Log($"[SeaglidePatch] Updated spinDownSpeed: {__instance.GetPrivateField<float>("spinDownSpeed")}");
-            Debug.Log($"[SeaglidePatch] Updated maxSpinSpeed: {__instance.GetPrivateField<float>("maxSpinSpeed")}");
-        }
-    }
+        __instance.seaglideForwardMaxSpeed *= speedMultiplier;
+        __instance.seaglideBackwardMaxSpeed *= speedMultiplier;
+        __instance.seaglideStrafeMaxSpeed *= speedMultiplier;
+        __instance.seaglideVerticalMaxSpeed *= speedMultiplier;
 
-    public static class ReflectionUtils
-    {
-        public static T GetPrivateField<T>(this object instance, string fieldName)
-        {
-            return (T)instance.GetType().GetField(fieldName, System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance).GetValue(instance);
-        }
+        Plugin.Logger.LogInfo($"seaglideForwardMaxSpeed: {__instance.seaglideForwardMaxSpeed}");
+        Plugin.Logger.LogInfo($"seaglideBackwardMaxSpeed: {__instance.seaglideBackwardMaxSpeed}");
+        Plugin.Logger.LogInfo($"seaglideStrafeMaxSpeed: {__instance.seaglideStrafeMaxSpeed}");
+        Plugin.Logger.LogInfo($"seaglideVerticalMaxSpeed: {__instance.seaglideVerticalMaxSpeed}");
 
-        public static void SetPrivateField<T>(this object instance, string fieldName, T value)
-        {
-            instance.GetType().GetField(fieldName, System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance).SetValue(instance, value);
-        }
+        Plugin.Logger.LogInfo($"seaglideWaterAcceleration Before: {__instance.seaglideWaterAcceleration}");
+        __instance.seaglideWaterAcceleration = 36.56f * speedMultiplier;
+        Plugin.Logger.LogInfo($"seaglideWaterAcceleration After: {__instance.seaglideWaterAcceleration}");
     }
 }

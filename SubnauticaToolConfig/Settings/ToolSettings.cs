@@ -1,6 +1,5 @@
 ﻿using Nautilus.Json;
 using Nautilus.Options.Attributes;
-using UnityEngine;
 
 namespace SubnauticaToolConfig.Settings;
 
@@ -26,9 +25,6 @@ public class ModConfig : ConfigFile
     // Fire Extinguisher Config End
 
     // Flare Config
-    //[Slider("Flare: Max Energy", 1, 10000, DefaultValue = 1800, Tooltip = "Changes the Flares Max Energy.")]
-    //public float FlareMaxEnergy = 1800;
-
     [Slider("Flare: Trow Force", 1, 1000, DefaultValue = 100, Tooltip = "Changes the Flares Throw Force.")]
     public float FlareThrowForce = 100;
     // Flare Config End
@@ -64,14 +60,8 @@ public class ModConfig : ConfigFile
     // Laser Cutter Config End
 
     // Seaglide Config
-    [Slider("Seaglide: Spin Up Speed", 1, 1000, DefaultValue = 200f, Tooltip = "Seaglide spin up speed.")]
-    public float SeaglideSpinUpSpeed = 200f;
-
-    [Slider("Seaglide: Spin Down Speed", 1, 1000, DefaultValue = 150f, Tooltip = "Seaglide spin down speed.")]
-    public float SeaglideSpinDownSpeed = 150f;
-
-    [Slider("Seaglide: Max Spin Speed", 1, 1000, DefaultValue = 400f, Tooltip = "Seaglide max spin speed.")]
-    public float SeaglideMaxSpinSpeed = 400f;
+    [Slider("Seaglide: Speed Multiplier", 1f, 25f, DefaultValue = 1f, Tooltip = "Changes the Seaglides Speed Multiplier. Warning: High Speed Could Result in Glitches. Restart Required")]
+    public float SeaglideSpeedMultiplier = 1f;
     // Seaglide Config End
 
     // Stasis Rifle Config
