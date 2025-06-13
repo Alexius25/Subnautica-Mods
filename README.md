@@ -9,7 +9,6 @@ All my Subnautica Mods
 
   <div align="center">
     <img src="./Pages/SubnauticaToolConfig-Image-1.jpg" alt="Screenshot 1" width="500"/>
-    <img src="./Pages/SubnauticaToolConfig-Image-2.jpg" alt="Screenshot 2" width="500"/>
     <img src="./Pages/SubnauticaToolConfig-Image-3.jpg" alt="Screenshot 3" width="500"/>
   </div>
 
