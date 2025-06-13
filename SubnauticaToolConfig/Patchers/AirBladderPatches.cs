@@ -7,7 +7,7 @@ namespace SubnauticaToolConfig.Patchers
 
     internal class AirBladderPatches
     {
-        [HarmonyPatch(nameof(PlayerTool.OnDraw))]
+        [HarmonyPatch(nameof(AirBladder.OnDraw))]
         [HarmonyPrefix]
         public static bool OnDraw_Prefix(PlayerTool __instance)
         {

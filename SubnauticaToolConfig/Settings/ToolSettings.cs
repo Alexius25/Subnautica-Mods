@@ -1,5 +1,6 @@
 ﻿using Nautilus.Json;
 using Nautilus.Options.Attributes;
+using UnityEngine;
 
 namespace SubnauticaToolConfig.Settings;
 
@@ -62,6 +63,17 @@ public class ModConfig : ConfigFile
     public bool LaserCutterUnlimitedEnergy = false;
     // Laser Cutter Config End
 
+    // Seaglide Config
+    [Slider("Seaglide: Spin Up Speed", 1, 1000, DefaultValue = 200f, Tooltip = "Seaglide spin up speed.")]
+    public float SeaglideSpinUpSpeed = 200f;
+
+    [Slider("Seaglide: Spin Down Speed", 1, 1000, DefaultValue = 150f, Tooltip = "Seaglide spin down speed.")]
+    public float SeaglideSpinDownSpeed = 150f;
+
+    [Slider("Seaglide: Max Spin Speed", 1, 1000, DefaultValue = 400f, Tooltip = "Seaglide max spin speed.")]
+    public float SeaglideMaxSpinSpeed = 400f;
+    // Seaglide Config End
+
     // Stasis Rifle Config
     [Slider("Stasis Rifle: Energy Cost", 0.1f, 10f, DefaultValue = 5f, Tooltip = "Changes the Stasis Rifles Energy Cost.")]
      public float StasisRifleEnergyCost = 5f;
@@ -71,17 +83,17 @@ public class ModConfig : ConfigFile
     // Stasis Rifle Config End
 
     // Stasis Sphere Config
-    //[Slider("Stasis Sphere: Max Radius", 1f, 100f, DefaultValue = 10f, Tooltip = "Changes the Stasis Spheres Max Radius.")]
-    //public float StasisSphereMaxRadius = 10f;
+    [Slider("Stasis Sphere: Max Radius", 1f, 100f, DefaultValue = 10f, Tooltip = "Changes the Stasis Spheres Max Radius.")]
+    public float StasisSphereMaxRadius = 10f;
 
-    //[Slider("Stasis Sphere: Min Radius", 0.1f, 5f, DefaultValue = 1f, Tooltip = "Changes the Stasis Spheres Min Radius.")]
-    //public float StasisSphereMinRadius = 1f;
+    [Slider("Stasis Sphere: Min Radius", 0.1f, 5f, DefaultValue = 1f, Tooltip = "Changes the Stasis Spheres Min Radius.")]
+    public float StasisSphereMinRadius = 1f;
 
-    //[Slider("Stasis Sphere: Max Time", 1f, 100f, DefaultValue = 20f, Tooltip = "Changes the Stasis Spheres Max Time.")]
-    //public float StasisSphereMaxTime = 20f;
+    [Slider("Stasis Sphere: Max Time", 1f, 100f, DefaultValue = 20f, Tooltip = "Changes the Stasis Spheres Max Time.")]
+    public float StasisSphereMaxTime = 20f;
 
-    //[Slider("Stasis Sphere: Min Time", 0.1f, 5f, DefaultValue = 4f, Tooltip = "Changes the Stasis Spheres Min Time.")]
-    //public float StasisSphereMinTime = 4f;
+    [Slider("Stasis Sphere: Min Time", 0.1f, 5f, DefaultValue = 4f, Tooltip = "Changes the Stasis Spheres Min Time.")]
+    public float StasisSphereMinTime = 4f;
     // Stasis Sphere Config End
 
     // Welder Config

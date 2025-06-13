@@ -7,7 +7,7 @@ namespace SubnauticaToolConfig.Patchers
 
     internal class FlarePatches
     {
-        [HarmonyPatch(nameof(PlayerTool.OnDraw))]
+        [HarmonyPatch(nameof(Flare.OnDraw))]
         [HarmonyPrefix]
         public static bool OnDraw_Prefix(PlayerTool __instance)
         {

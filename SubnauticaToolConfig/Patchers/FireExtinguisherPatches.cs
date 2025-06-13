@@ -7,7 +7,7 @@ namespace SubnauticaToolConfig.Patchers
 
     internal class FireExtinguisherPatches
     {
-        [HarmonyPatch(nameof(PlayerTool.OnDraw))]
+        [HarmonyPatch(nameof(FireExtinguisher.OnDraw))]
         [HarmonyPrefix]
         public static bool OnDraw_Prefix(PlayerTool __instance)
         {

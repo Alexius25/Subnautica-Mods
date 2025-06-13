@@ -7,7 +7,7 @@ namespace SubnauticaToolConfig.Patchers
 
     internal class KnifePatches
     {
-        [HarmonyPatch(nameof(PlayerTool.OnDraw))]
+        [HarmonyPatch(nameof(Knife.OnDraw))]
         [HarmonyPrefix]
         public static bool OnDraw_Prefix(PlayerTool __instance)
         {

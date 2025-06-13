@@ -7,7 +7,7 @@ namespace SubnauticaToolConfig.Patchers
 
     internal class LaserCutterPatches
     {
-        [HarmonyPatch(nameof(PlayerTool.OnDraw))]
+        [HarmonyPatch(nameof(LaserCutter.OnDraw))]
         [HarmonyPrefix]
         public static bool OnDraw_Prefix(PlayerTool __instance)
         {

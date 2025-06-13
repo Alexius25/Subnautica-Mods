@@ -7,7 +7,7 @@ namespace SubnauticaToolConfig.Patchers
 
     internal class StasisRiflePatches
     {
-        [HarmonyPatch(nameof(PlayerTool.OnDraw))]
+        [HarmonyPatch(nameof(StasisRifle.OnDraw))]
         [HarmonyPrefix]
         public static bool OnDraw_Prefix(PlayerTool __instance)
         {

@@ -2,6 +2,7 @@
 using BepInEx.Logging;
 using HarmonyLib;
 using Nautilus.Handlers;
+using SubnauticaToolConfig.Patchers;
 using SubnauticaToolConfig.Settings;
 using System.Reflection;
 
@@ -24,6 +25,7 @@ namespace SubnauticaToolConfig
             // register harmony patches, if there are any
             Harmony.CreateAndPatchAll(Assembly, $"{PluginInfo.PLUGIN_GUID}");
             Logger.LogInfo($"Plugin {PluginInfo.PLUGIN_GUID} is loaded!");
+
         }
     }
 }
