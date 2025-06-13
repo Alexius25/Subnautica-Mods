@@ -18,7 +18,7 @@ All my Subnautica Mods
   With this Mod you can change Tool Values
 
   **Required Mods:**
-  - Nautilus [GitHub](https://github.com/SubnauticaModding/Nautilus) [Nexus Mods](https://www.nexusmods.com/subnautica/mods/1262)
+  - Nautilus: [GitHub](https://github.com/SubnauticaModding/Nautilus) / [Nexus Mods](https://www.nexusmods.com/subnautica/mods/1262)
 
   **Download:**
   - [Github Release](https://github.com/Alexius25/Subnautica-Mods/releases)
