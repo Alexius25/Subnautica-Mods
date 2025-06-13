@@ -14,12 +14,9 @@ All my Subnautica Mods
 
   <br/>
 
-  **Beschreibung:**  
-  Mit diesem Mod kannst du Werkzeuge konfigurieren und anpassen.
+  **Description:**  
+  With this Mod you can change Tool Values
 
-  **Voraussetzungen:**
-  - Subnautica (aktuelle Version)
-  - [Nautilus](https://github.com/SnitramNed/Nautilus) installiert
-  - .NET Framework 4.7.2 oder höher
-
+  **Required Mods:**
+  - [Nautilus](https://github.com/SubnauticaModding/Nautilus)
 </details>
