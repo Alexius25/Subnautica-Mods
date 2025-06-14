@@ -1,6 +1,8 @@
 ﻿using Nautilus.Assets;
 using Nautilus.Assets.Gadgets;
+using Nautilus.Assets.PrefabTemplates;
 using Nautilus.Crafting;
+using Nautilus.Utility;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
@@ -9,15 +11,17 @@ using static CraftData;
 
 public static class BedPrefabLoader
 {
+    // --- Config Classes ---
     public class BedConfig
     {
+        public string techType; // Optional: Custom TechType string
         public string displayName;
         public string name;
         public string description;
         public List<IngredientConfig> ingredients;
-        public string blanketTexture;
-        public string pillowTexture;
-        public string frameTexture;
+        public string pillow01Texture;
+        public string pillow02Texture;
+        public string matressTexture;
         public string iconTexture;
     }
 
@@ -27,16 +31,19 @@ public static class BedPrefabLoader
         public int amount;
     }
 
+    // --- Public Bed Registration Method ---
     public static void RegisterCustomBeds(string imageFolder)
     {
         Debug.Log($"[BedPrefabLoader] RegisterCustomBeds called, scanning: {imageFolder}");
 
+        // Validate folder
         if (!Directory.Exists(imageFolder))
         {
             Debug.LogWarning($"[BedPrefabLoader] Beds folder does not exist: {imageFolder}");
             return;
         }
 
+        // Discover PNG files
         var pngFiles = Directory.GetFiles(imageFolder, "*.png", SearchOption.AllDirectories);
         Debug.Log($"[BedPrefabLoader] Found {pngFiles.Length} PNG files in {imageFolder} (and subfolders)");
 
@@ -45,9 +52,9 @@ public static class BedPrefabLoader
         {
             string baseName = Path.GetFileNameWithoutExtension(pngPath);
             string folder = Path.GetDirectoryName(pngPath);
-
             string configPath = Path.Combine(folder, baseName + ".json");
 
+            // --- Load Bed Config ---
             BedConfig config = null;
             if (File.Exists(configPath))
             {
@@ -58,137 +65,118 @@ public static class BedPrefabLoader
             {
                 Debug.Log($"[BedPrefabLoader] No config found for {pngPath}");
             }
-
-            if (config != null)
-            {
-                bool isBasePng =
-                    (config.blanketTexture == null || Path.GetFileName(config.blanketTexture) == Path.GetFileName(pngPath)) &&
-                    (config.pillowTexture == null || Path.GetFileName(config.pillowTexture) != Path.GetFileName(pngPath)) &&
-                    (config.frameTexture == null || Path.GetFileName(config.frameTexture) != Path.GetFileName(pngPath));
-                if (!isBasePng)
-                {
-                    Debug.Log($"[BedPrefabLoader] Skipping PNG {pngPath} since it's used as a part texture.");
-                    continue;
-                }
-            }
+            ;
 
             Debug.Log($"[BedPrefabLoader] Processing PNG: {pngPath}");
 
+            // --- Bed Basic Info ---
+            string bedName = config?.techType ?? $"CustomBed_{baseName}_{index}";
             string displayName = config?.displayName ?? config?.name ?? baseName;
-            string bedName = $"CustomBed_{baseName}_{index}";
             string desc = config?.description ?? "A bed with a custom design.";
-
-            string iconPath = config?.iconTexture != null
-                ? Path.Combine(folder, config.iconTexture)
-                : pngPath;
-
-            Sprite iconSprite = null;
-            if (File.Exists(iconPath))
-            {
-                iconSprite = LoadSpriteFromFile(iconPath);
-            }
-            if (iconSprite == null && File.Exists(pngPath))
-            {
-                iconSprite = LoadSpriteFromFile(pngPath);
-            }
-            if (iconSprite == null)
-            {
-                Debug.LogWarning($"[BedPrefabLoader] Could not load icon sprite for {bedName}, prefab may not show correctly.");
-            }
-            else
-            {
-                Debug.Log($"[BedPrefabLoader] Using icon: {(File.Exists(iconPath) ? iconPath : pngPath)}");
-            }
+            string iconPath = config?.iconTexture != null ? Path.Combine(folder, config.iconTexture) : pngPath;
 
             Debug.Log($"[BedPrefabLoader] Registering prefab: {bedName} (Display: {displayName})");
 
-            var prefab = new CustomPrefab(bedName, displayName, desc, iconSprite);
+            // --- Nautilus Prefab Setup ---
+            var prefabInfo = PrefabInfo.WithTechType(bedName, displayName, desc, iconPath);
+            var prefab = new CustomPrefab(prefabInfo);
+            var bedClone = new CloneTemplate(prefabInfo, TechType.Bed1);
 
-            prefab.SetGameObject(() =>
+            // --- Set Appearance/Textures ---
+            bedClone.ModifyPrefab += gameObject =>
             {
-                Debug.Log($"[BedPrefabLoader] Instantiating vanilla bed prefab for: {bedName}");
-                var vanillaBed = Resources.Load<GameObject>("WorldEntities/Tools/Bed1");
-                var bedInstance = GameObject.Instantiate(vanillaBed);
+                Debug.Log($"[BedPrefabLoader] Customizing cloned vanilla bed prefab for: {bedName}");
 
-                Texture2D blanketTex = null, pillowTex = null, frameTex = null;
+                // Load textures
+                Texture2D matressTex = null, pillow01Tex = null, pillow02Tex = null;
 
-                if (config?.blanketTexture != null)
+                // Matress
+                if (config?.matressTexture != null)
                 {
-                    string blanketPath = Path.Combine(folder, config.blanketTexture);
-                    if (File.Exists(blanketPath))
+                    string matressPath = Path.Combine(folder, config.matressTexture);
+                    if (File.Exists(matressPath))
                     {
-                        Debug.Log($"[BedPrefabLoader] Loading blanket texture: {blanketPath}");
-                        blanketTex = LoadTextureFromFile(blanketPath);
+                        Debug.Log($"[BedPrefabLoader] Loading matress texture: {matressPath}");
+                        matressTex = LoadTextureFromFile(matressPath);
                     }
                     else
                     {
-                        Debug.Log($"[BedPrefabLoader] Blanket texture specified in config but not found: {blanketPath}");
+                        Debug.Log($"[BedPrefabLoader] Matress texture specified in config but not found: {matressPath}");
                     }
                 }
-                if (blanketTex == null)
+                if (matressTex == null)
                 {
-                    Debug.Log($"[BedPrefabLoader] Using main PNG as blanket texture: {pngPath}");
-                    blanketTex = LoadTextureFromFile(pngPath);
+                    Debug.Log($"[BedPrefabLoader] Using main PNG as matress texture: {pngPath}");
+                    matressTex = LoadTextureFromFile(pngPath);
                 }
 
-                if (config?.pillowTexture != null)
+                // Pillow 01
+                if (config?.pillow01Texture != null)
                 {
-                    string pillowPath = Path.Combine(folder, config.pillowTexture);
-                    if (File.Exists(pillowPath))
+                    string pillow01Path = Path.Combine(folder, config.pillow01Texture);
+                    if (File.Exists(pillow01Path))
                     {
-                        Debug.Log($"[BedPrefabLoader] Loading pillow texture: {pillowPath}");
-                        pillowTex = LoadTextureFromFile(pillowPath);
+                        Debug.Log($"[BedPrefabLoader] Loading pillow01 texture: {pillow01Path}");
+                        pillow01Tex = LoadTextureFromFile(pillow01Path);
                     }
                     else
                     {
-                        Debug.Log($"[BedPrefabLoader] Pillow texture specified in config but not found: {pillowPath}");
+                        Debug.Log($"[BedPrefabLoader] Pillow01 texture specified in config but not found: {pillow01Path}");
                     }
                 }
 
-                if (config?.frameTexture != null)
+                // Pillow 02
+                if (config?.pillow02Texture != null)
                 {
-                    string framePath = Path.Combine(folder, config.frameTexture);
-                    if (File.Exists(framePath))
+                    string pillow02Path = Path.Combine(folder, config.pillow02Texture);
+                    if (File.Exists(pillow02Path))
                     {
-                        Debug.Log($"[BedPrefabLoader] Loading frame texture: {framePath}");
-                        frameTex = LoadTextureFromFile(framePath);
+                        Debug.Log($"[BedPrefabLoader] Loading pillow02 texture: {pillow02Path}");
+                        pillow02Tex = LoadTextureFromFile(pillow02Path);
                     }
                     else
                     {
-                        Debug.Log($"[BedPrefabLoader] Frame texture specified in config but not found: {framePath}");
+                        Debug.Log($"[BedPrefabLoader] Pillow02 texture specified in config but not found: {pillow02Path}");
                     }
                 }
 
-                var renderers = bedInstance.GetComponentsInChildren<Renderer>(true);
+                // --- Apply Textures to Renderers by Material Slot (index) ---
+                var renderers = gameObject.GetComponentsInChildren<Renderer>(true);
                 Debug.Log($"[BedPrefabLoader] Found {renderers.Length} renderers for prefab: {bedName}");
+
                 foreach (var renderer in renderers)
                 {
                     string rname = renderer.name.ToLowerInvariant();
                     Debug.Log($"[BedPrefabLoader] Renderer: {renderer.name}");
 
-                    if ((rname.Contains("blanket") || rname.Contains("cube")) && blanketTex != null)
+                    // Example: by material slot index
+                    // [0] = Matress, [1] = Pillow01, [2] = Pillow02 (convention: depends on prefab)
+                    var mats = renderer.materials;
+                    if (matressTex != null && mats.Length > 0)
                     {
-                        Debug.Log($"[BedPrefabLoader] Applying blanket texture to renderer: {renderer.name}");
-                        foreach (var mat in renderer.materials)
-                            mat.mainTexture = blanketTex;
+                        mats[0] = new Material(mats[0]);
+                        mats[0].SetTexture("_MainTex", matressTex);
+                        Debug.Log($"[BedPrefabLoader] Applied matress texture to material 0 of {renderer.name}");
                     }
-                    else if (rname.Contains("pillow") && pillowTex != null)
+                    if (pillow01Tex != null && mats.Length > 1)
                     {
-                        Debug.Log($"[BedPrefabLoader] Applying pillow texture to renderer: {renderer.name}");
-                        foreach (var mat in renderer.materials)
-                            mat.mainTexture = pillowTex;
+                        mats[1] = new Material(mats[1]);
+                        mats[1].SetTexture("_MainTex", pillow01Tex);
+                        Debug.Log($"[BedPrefabLoader] Applied pillow01 texture to material 1 of {renderer.name}");
                     }
-                    else if ((rname.Contains("frame") || rname.Contains("base")) && frameTex != null)
+                    if (pillow02Tex != null && mats.Length > 2)
                     {
-                        Debug.Log($"[BedPrefabLoader] Applying frame texture to renderer: {renderer.name}");
-                        foreach (var mat in renderer.materials)
-                            mat.mainTexture = frameTex;
+                        mats[2] = new Material(mats[2]);
+                        mats[2].SetTexture("_MainTex", pillow02Tex);
+                        Debug.Log($"[BedPrefabLoader] Applied pillow02 texture to material 2 of {renderer.name}");
                     }
+                    renderer.materials = mats;
                 }
+            };
 
-                return bedInstance;
-            });
+            prefab.SetGameObject(bedClone);
 
+            // --- Recipe Parsing ---
             var recipe = new List<Ingredient>();
             if (config?.ingredients != null)
             {
@@ -208,29 +196,26 @@ public static class BedPrefabLoader
                 recipe.Add(new Ingredient(TechType.FiberMesh, 2));
                 recipe.Add(new Ingredient(TechType.Titanium, 1));
             }
+
+            // --- Register Prefab ---
             prefab.SetRecipe(new RecipeData(recipe.ToArray()));
             prefab.SetUnlock(TechType.Bed1); // vanilla bed unlock
-
+            prefab.SetPdaGroupCategory(TechGroup.Miscellaneous, TechCategory.Misc);
             prefab.Register();
             Debug.Log($"[BedPrefabLoader] Registered bed prefab: {bedName}");
+
             index++;
         }
     }
 
+    // --- Helper: Load Texture From File ---
     private static Texture2D LoadTextureFromFile(string path)
     {
         Debug.Log($"[BedPrefabLoader] Loading texture from file: {path}");
         byte[] fileData = File.ReadAllBytes(path);
         var tex = new Texture2D(2, 2, TextureFormat.RGBA32, false);
         tex.LoadImage(fileData);
+        Debug.Log($"[BedPrefabLoader] Loaded {tex.width}x{tex.height} texture from {path}");
         return tex;
-    }
-
-    private static Sprite LoadSpriteFromFile(string path)
-    {
-        Debug.Log($"[BedPrefabLoader] Loading sprite from file: {path}");
-        var tex = new Texture2D(2, 2, TextureFormat.RGBA32, false);
-        tex.LoadImage(File.ReadAllBytes(path));
-        return Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height), new Vector2(0.5f, 0.5f));
     }
 }

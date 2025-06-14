@@ -5,7 +5,7 @@ using System.IO;
 [BepInPlugin("com.yourname.CustomBeds", "Custom Beds", "1.0.0")]
 public class Mod : BaseUnityPlugin
 {
-    public static string BedImageFolder => Path.Combine(Paths.PluginPath, "CustomBeds", "BedImages");
+    public static string BedImageFolder => Path.Combine(Paths.PluginPath, "CustomBeds", "CustomBeds");
 
     private void Awake()
     {
