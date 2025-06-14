@@ -2,6 +2,7 @@
 using Nautilus.Assets.Gadgets;
 using Nautilus.Assets.PrefabTemplates;
 using Nautilus.Crafting;
+using Nautilus.Handlers;
 using Nautilus.Utility;
 using Newtonsoft.Json;
 using System.Collections.Generic;
@@ -19,8 +20,6 @@ public static class BedPrefabLoader
         public string name;
         public string description;
         public List<IngredientConfig> ingredients;
-        public string pillow01Texture;
-        public string pillow02Texture;
         public string matressTexture;
         public string iconTexture;
     }
@@ -65,7 +64,6 @@ public static class BedPrefabLoader
             {
                 Debug.Log($"[BedPrefabLoader] No config found for {pngPath}");
             }
-            ;
 
             Debug.Log($"[BedPrefabLoader] Processing PNG: {pngPath}");
 
@@ -87,10 +85,9 @@ public static class BedPrefabLoader
             {
                 Debug.Log($"[BedPrefabLoader] Customizing cloned vanilla bed prefab for: {bedName}");
 
-                // Load textures
-                Texture2D matressTex = null, pillow01Tex = null, pillow02Tex = null;
+                // Load texture (matressTex is used for all)
+                Texture2D matressTex = null;
 
-                // Matress
                 if (config?.matressTexture != null)
                 {
                     string matressPath = Path.Combine(folder, config.matressTexture);
@@ -110,37 +107,7 @@ public static class BedPrefabLoader
                     matressTex = LoadTextureFromFile(pngPath);
                 }
 
-                // Pillow 01
-                if (config?.pillow01Texture != null)
-                {
-                    string pillow01Path = Path.Combine(folder, config.pillow01Texture);
-                    if (File.Exists(pillow01Path))
-                    {
-                        Debug.Log($"[BedPrefabLoader] Loading pillow01 texture: {pillow01Path}");
-                        pillow01Tex = LoadTextureFromFile(pillow01Path);
-                    }
-                    else
-                    {
-                        Debug.Log($"[BedPrefabLoader] Pillow01 texture specified in config but not found: {pillow01Path}");
-                    }
-                }
-
-                // Pillow 02
-                if (config?.pillow02Texture != null)
-                {
-                    string pillow02Path = Path.Combine(folder, config.pillow02Texture);
-                    if (File.Exists(pillow02Path))
-                    {
-                        Debug.Log($"[BedPrefabLoader] Loading pillow02 texture: {pillow02Path}");
-                        pillow02Tex = LoadTextureFromFile(pillow02Path);
-                    }
-                    else
-                    {
-                        Debug.Log($"[BedPrefabLoader] Pillow02 texture specified in config but not found: {pillow02Path}");
-                    }
-                }
-
-                // --- Apply Textures to Renderers by Material Slot (index) ---
+                // --- Apply Texture to Matress and Pillows ---
                 var renderers = gameObject.GetComponentsInChildren<Renderer>(true);
                 Debug.Log($"[BedPrefabLoader] Found {renderers.Length} renderers for prefab: {bedName}");
 
@@ -149,28 +116,18 @@ public static class BedPrefabLoader
                     string rname = renderer.name.ToLowerInvariant();
                     Debug.Log($"[BedPrefabLoader] Renderer: {renderer.name}");
 
-                    // Example: by material slot index
-                    // [0] = Matress, [1] = Pillow01, [2] = Pillow02 (convention: depends on prefab)
-                    var mats = renderer.materials;
-                    if (matressTex != null && mats.Length > 0)
+                    // Nur auf Matratze und Kissen anwenden
+                    if (rname.Contains("matress") || rname.Contains("pillow01") || rname.Contains("pillow02"))
                     {
-                        mats[0] = new Material(mats[0]);
-                        mats[0].SetTexture("_MainTex", matressTex);
-                        Debug.Log($"[BedPrefabLoader] Applied matress texture to material 0 of {renderer.name}");
+                        var mats = renderer.materials;
+                        for (int i = 0; i < mats.Length; i++)
+                        {
+                            mats[i] = new Material(mats[i]);
+                            mats[i].SetTexture("_MainTex", matressTex);
+                            Debug.Log($"[BedPrefabLoader] Applied shared texture to material {i} of {renderer.name}");
+                        }
+                        renderer.materials = mats;
                     }
-                    if (pillow01Tex != null && mats.Length > 1)
-                    {
-                        mats[1] = new Material(mats[1]);
-                        mats[1].SetTexture("_MainTex", pillow01Tex);
-                        Debug.Log($"[BedPrefabLoader] Applied pillow01 texture to material 1 of {renderer.name}");
-                    }
-                    if (pillow02Tex != null && mats.Length > 2)
-                    {
-                        mats[2] = new Material(mats[2]);
-                        mats[2].SetTexture("_MainTex", pillow02Tex);
-                        Debug.Log($"[BedPrefabLoader] Applied pillow02 texture to material 2 of {renderer.name}");
-                    }
-                    renderer.materials = mats;
                 }
             };
 
@@ -200,8 +157,11 @@ public static class BedPrefabLoader
             // --- Register Prefab ---
             prefab.SetRecipe(new RecipeData(recipe.ToArray()));
             prefab.SetUnlock(TechType.Bed1); // vanilla bed unlock
-            prefab.SetPdaGroupCategory(TechGroup.Miscellaneous, TechCategory.Misc);
+            prefab.SetPdaGroupCategory(TechGroup.InteriorModules, TechCategory.InteriorModule);
             prefab.Register();
+            LanguageHandler.SetLanguageLine(bedName, displayName);
+            LanguageHandler.SetLanguageLine($"{bedName}_Description", desc);
+            LanguageHandler.SetLanguageLine($"Tooltip_{bedName}", desc);
             Debug.Log($"[BedPrefabLoader] Registered bed prefab: {bedName}");
 
             index++;
