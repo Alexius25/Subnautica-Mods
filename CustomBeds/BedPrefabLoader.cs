@@ -211,12 +211,6 @@ public static class BedPrefabLoader
             prefab.SetRecipe(new RecipeData(recipe.ToArray()));
             prefab.SetUnlock(TechType.Bed1); // vanilla bed unlock
 
-            // Do NOT set any CraftTree. Let Nautilus handle builder registration automatically
-            // If the beds still do not appear in the builder, ensure:
-            // - You are not calling .SetCraftTreeType or .SetCraftTreePath anywhere else
-            // - Your prefab is a clone of a vanilla buildable (Bed1)
-            // - Nautilus is up-to-date and not overridden by other mods
-
             prefab.Register();
             Debug.Log($"[BedPrefabLoader] Registered bed prefab: {bedName}");
             index++;
