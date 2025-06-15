@@ -25,6 +25,13 @@ public class CustomBedConfig : ConfigFile
         CustomBedsUtils.CreateCustomBedsFolder();
     }
 
+    [Button("Automatic BedPack Install", Tooltip = "Pick A Zip file to install as an BedPack. Only Works under Windows")]
+    public void PickAndExtractZip(ButtonClickedEventArgs e)
+    {
+        Debug.Log($"[CustomBedConfig] Button clicked: {e.Id}");
+        CustomBedsUtils.PickAndExtractZip();
+    }
+
     public void OnOpenCustomBedsFolderCreated()
     {
         Debug.Log("[CustomBedConfig] Open Custom Beds Folder button created.");
