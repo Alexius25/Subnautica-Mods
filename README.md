@@ -30,8 +30,6 @@ All my Subnautica Mods
 
   <div align="right">
     <img src="./Pages/CustomBedsJson1.png" alt="Screenshot 1" width="500"/>
-    Hello
-  
   </div>
 
   <br/>
