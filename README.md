@@ -28,9 +28,8 @@ All my Subnautica Mods
 <details>
   <summary><strong>Subnautica Custom Beds [Experimental]</strong></summary>
 
-  <div align="center">
-    <img src="./Pages/" alt="Screenshot 1" width="500"/>
-    <img src="./Pages/" alt="Screenshot 3" width="500"/>
+  <div align="right">
+    <img src="./Pages/CustomBedsJson1.png" alt="Screenshot 1" width="500"/>
   </div>
 
   <br/>
