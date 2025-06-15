@@ -33,9 +33,9 @@ All my Subnautica Mods
 
   **How to Make Custom Beds:**
 
-  **1. Json File**
+  **Comming Soon**
   <div align="center">
-    <img src="./Pages/CustomBedsJson1.png" alt="Screenshot 1" width="750"/>
+    <img src="./Pages/" alt="Not Available" width="750"/>
   </div>
 
   <br/>
