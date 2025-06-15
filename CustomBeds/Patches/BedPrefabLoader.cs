@@ -22,7 +22,7 @@ public static class BedPrefabLoader
         public string description;
         public string unlockTechType; // Optional: TechType to unlock this bed
         public List<IngredientConfig> ingredients;
-        public string matressTexture;
+        public string texture;
     }
 
     public class IngredientConfig
@@ -89,9 +89,9 @@ public static class BedPrefabLoader
                 // Load texture (matressTex is used for all)
                 Texture2D matressTex = null;
 
-                if (config?.matressTexture != null)
+                if (config?.texture != null)
                 {
-                    string matressPath = Path.Combine(folder, config.matressTexture);
+                    string matressPath = Path.Combine(folder, config.texture);
                     if (File.Exists(matressPath))
                     {
                         Debug.Log($"[BedPrefabLoader] Loading matress texture: {matressPath}");
@@ -108,7 +108,7 @@ public static class BedPrefabLoader
                     matressTex = LoadTextureFromFile(pngPath);
                 }
 
-                // --- Apply Texture to Matress and Pillows ---
+                // --- Apply texture to Matress and Pillows ---
                 var renderers = gameObject.GetComponentsInChildren<Renderer>(true);
                 Debug.Log($"[BedPrefabLoader] Found {renderers.Length} renderers for prefab: {bedName}");
 
@@ -177,7 +177,7 @@ public static class BedPrefabLoader
         }
     }
 
-    // --- Helper: Load Texture From File ---
+    // --- Helper: Load texture From File ---
     private static Texture2D LoadTextureFromFile(string path)
     {
         Debug.Log($"[BedPrefabLoader] Loading texture from file: {path}");

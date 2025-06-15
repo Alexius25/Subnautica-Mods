@@ -9,7 +9,7 @@ using static BedPrefabLoader;
 [BepInPlugin("com.Alexius25.CustomBeds", "Custom Beds", "1.0.0")]
 public class Mod : BaseUnityPlugin
 {
-    public static string BedImageFolder => Path.Combine(Paths.PluginPath, "CustomBeds", "CustomBeds");
+    public static string BedImageFolder => Path.Combine(Paths.PluginPath, "CustomBedsMod", "CustomBeds");
 
     private void Awake()
     {
