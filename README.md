@@ -27,6 +27,7 @@ All my Subnautica Mods
 
 <details>
   <summary><strong>Subnautica Custom Beds</strong></summary>
+  
   **Description:**  
   With this Mod you can make Custom Beds using png and json files
 
