@@ -26,16 +26,20 @@ All my Subnautica Mods
 </details>
 
 <details>
-  <summary><strong>Subnautica Custom Beds [Experimental]</strong></summary>
+  <summary><strong>Subnautica Custom Beds</strong></summary>
+  **Description:**  
+  With this Mod you can make Custom Beds using png and json files
 
+  **How to Make Custom Beds:**
+
+  **1. Json File**
   <div align="center">
     <img src="./Pages/CustomBedsJson1.png" alt="Screenshot 1" width="750"/>
   </div>
 
   <br/>
 
-  **Description:**  
-  With this Mod you can make Custom Beds using png and json files
+
 
   **Required Mods:**
   - Nautilus: [GitHub](https://github.com/SubnauticaModding/Nautilus) / [Nexus Mods](https://www.nexusmods.com/subnautica/mods/1262)
