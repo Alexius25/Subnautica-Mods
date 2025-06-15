@@ -1,4 +1,5 @@
-﻿using Nautilus.Assets;
+﻿using BepInEx;
+using Nautilus.Assets;
 using Nautilus.Assets.Gadgets;
 using Nautilus.Assets.PrefabTemplates;
 using Nautilus.Crafting;
@@ -19,9 +20,9 @@ public static class BedPrefabLoader
         public string displayName;
         public string name;
         public string description;
+        public string unlockTechType; // Optional: TechType to unlock this bed
         public List<IngredientConfig> ingredients;
         public string matressTexture;
-        public string iconTexture;
     }
 
     public class IngredientConfig
@@ -71,12 +72,12 @@ public static class BedPrefabLoader
             string bedName = config?.techType ?? $"CustomBed_{baseName}_{index}";
             string displayName = config?.displayName ?? config?.name ?? baseName;
             string desc = config?.description ?? "A bed with a custom design.";
-            string iconPath = config?.iconTexture != null ? Path.Combine(folder, config.iconTexture) : pngPath;
 
             Debug.Log($"[BedPrefabLoader] Registering prefab: {bedName} (Display: {displayName})");
 
             // --- Nautilus Prefab Setup ---
-            var prefabInfo = PrefabInfo.WithTechType(bedName, displayName, desc, iconPath);
+            var prefabInfo = PrefabInfo.WithTechType(bedName, displayName, desc);
+            prefabInfo.WithIcon(SpriteManager.Get(TechType.Bed1));
             var prefab = new CustomPrefab(prefabInfo);
             var bedClone = new CloneTemplate(prefabInfo, TechType.Bed1);
 
@@ -116,8 +117,10 @@ public static class BedPrefabLoader
                     string rname = renderer.name.ToLowerInvariant();
                     Debug.Log($"[BedPrefabLoader] Renderer: {renderer.name}");
 
-                    // Nur auf Matratze und Kissen anwenden
-                    if (rname.Contains("matress") || rname.Contains("pillow01") || rname.Contains("pillow02"))
+                    // Apply matress texture to all relevant renderers
+                    if (rname.Contains("matress") 
+                        || rname.Contains("pillow01") || rname.Contains("pillow_01")
+                        || rname.Contains("pillow02") || rname.Contains("pillow_02"))
                     {
                         var mats = renderer.materials;
                         for (int i = 0; i < mats.Length; i++)
@@ -155,8 +158,14 @@ public static class BedPrefabLoader
             }
 
             // --- Register Prefab ---
+            // Unlock-TechType aus der Config lesen, sonst Bed1 als Fallback
+            TechType unlockTechType = TechType.Bed1;
+            if (!string.IsNullOrEmpty(config?.unlockTechType) && System.Enum.TryParse<TechType>(config.unlockTechType, out var parsedUnlock))
+            {
+                unlockTechType = parsedUnlock;
+            }
             prefab.SetRecipe(new RecipeData(recipe.ToArray()));
-            prefab.SetUnlock(TechType.Bed1); // vanilla bed unlock
+            prefab.SetUnlock(unlockTechType);
             prefab.SetPdaGroupCategory(TechGroup.InteriorModules, TechCategory.InteriorModule);
             prefab.Register();
             LanguageHandler.SetLanguageLine(bedName, displayName);

@@ -2,7 +2,7 @@
 using HarmonyLib;
 using System.IO;
 
-[BepInPlugin("com.yourname.CustomBeds", "Custom Beds", "1.0.0")]
+[BepInPlugin("com.Alexius25.CustomBeds", "Custom Beds", "1.0.0")]
 public class Mod : BaseUnityPlugin
 {
     public static string BedImageFolder => Path.Combine(Paths.PluginPath, "CustomBeds", "CustomBeds");
