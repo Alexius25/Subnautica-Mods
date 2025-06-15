@@ -11,6 +11,9 @@ public class CustomBedConfig : ConfigFile
     [Toggle("Enable Custom Beds", Tooltip = "Enable or disable custom beds feature. WARNING: Every placed bed will be destroyed on Save loadup")]
     public bool EnableCustomBeds { get; set; } = true;
 
+    [Toggle("<color=#f1c353><size=35>File Settings:</size></color> <alpha=#00>----------------------------------------------------------------------------------------------</alpha>")]
+    public bool VisibilityDivider;
+
     [Button("Open Custom Beds Folder", Tooltip = "Opens the Folder where all your BedPacks Should be located"), OnGameObjectCreated(nameof(OnOpenCustomBedsFolderCreated))]
     public void OpenCustomBedsFolder(ButtonClickedEventArgs e)
     {

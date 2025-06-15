@@ -9,6 +9,7 @@ using static BedPrefabLoader;
 using static OVRHaptics;
 
 [BepInPlugin("com.Alexius25.CustomBeds", "Custom Beds", "1.0.0")]
+[BepInDependency("com.snmodding.nautilus")]
 public class Main : BaseUnityPlugin
 {
     public static string BedImageFolder => Path.Combine(Paths.PluginPath, "CustomBedsMod", "CustomBeds");
