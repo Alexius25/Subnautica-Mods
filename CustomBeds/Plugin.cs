@@ -19,6 +19,7 @@ public class Main : BaseUnityPlugin
 
     private void Awake()
     {
+        Logger = base.Logger;
         Logger.LogInfo("[CustomBeds] Plugin Awake, starting initialization...");
         Logger.LogInfo($"[CustomBeds] Bed image folder is: {BedImageFolder}");
         Harmony.CreateAndPatchAll(typeof(Main));
