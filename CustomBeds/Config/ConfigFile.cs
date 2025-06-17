@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace CustomBedsSubnautica.Config;
 
-[Menu("CustomBed Config")]
+[Menu("CustomBeds")]
 public class CustomBedConfig : ConfigFile
 {
     [Toggle("Enable Custom Beds", Tooltip = "Enable or disable custom beds feature. WARNING: Every placed bed will be destroyed on Save loadup")]

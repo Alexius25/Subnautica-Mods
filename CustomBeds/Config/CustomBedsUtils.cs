@@ -66,10 +66,8 @@ namespace CustomBedsSubnautica.Config
                     }
 
                     ShowMessage(
-                        "Extraction Results",
-                        $"Extraction complete!\n\nSuccessfully extracted: {successCount} file(s)\nFailed: {errorCount} file(s)\n\nFiles were extracted to:\n{CustomBedsPath}");
-
-                    OpenCustomBedsFolder();
+                        "Installation Results",
+                        $"Installation Complete!\n\nSuccessfully extracted: {successCount} file(s)\nFailed: {errorCount} file(s)\n\nFiles were extracted to:\n{CustomBedsPath}");
                 }
                 catch (Exception ex)
                 {
@@ -151,7 +149,8 @@ namespace CustomBedsSubnautica.Config
         {
             try
             {
-                string formattedMessage = message.Replace("'", "''").Replace("\n", "`n");
+                // Ersetze Zeilenumbrüche durch echte Newlines für PowerShell
+                string formattedMessage = message.Replace("'", "''").Replace("\n", Environment.NewLine);
                 string psScript = $"[System.Windows.Forms.MessageBox]::Show('{formattedMessage}', '{title}')";
 
                 using (var process = new Process())

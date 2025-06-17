@@ -23,6 +23,7 @@ public static class BedPrefabLoader
         public string unlockTechType; // Optional: TechType to unlock this bed
         public List<IngredientConfig> ingredients;
         public string texture;
+        public string bedType; // "Bed1", "Bed2" oder "NarrowBed"
     }
 
     public class IngredientConfig
@@ -52,44 +53,59 @@ public static class BedPrefabLoader
         {
             string baseName = Path.GetFileNameWithoutExtension(pngPath);
             string folder = Path.GetDirectoryName(pngPath);
-            string configPath = Path.Combine(folder, baseName + ".json");
+            string configPath = Path.Combine(folder, "Config.json");
 
             // --- Load Bed Config ---
             BedConfig config = null;
             if (File.Exists(configPath))
             {
-                Debug.Log($"[BedPrefabLoader] Found config for {pngPath}: {configPath}");
+                Debug.Log($"[BedPrefabLoader] Found config: {configPath}");
                 config = JsonConvert.DeserializeObject<BedConfig>(File.ReadAllText(configPath));
             }
             else
             {
-                Debug.Log($"[BedPrefabLoader] No config found for {pngPath}");
+                Debug.LogWarning($"[BedPrefabLoader] No config found in {folder}, skipping {pngPath}");
+                continue; // Ohne Config keine Registrierung
             }
 
             Debug.Log($"[BedPrefabLoader] Processing PNG: {pngPath}");
 
             // --- Bed Basic Info ---
-            string bedName = config?.techType ?? $"CustomBed_{baseName}_{index}";
-            string displayName = config?.displayName ?? config?.name ?? baseName;
-            string desc = config?.description ?? "A bed with a custom design.";
+            string bedName = config.techType ?? $"CustomBed_{baseName}_{index}";
+            string displayName = config.displayName ?? config.name ?? baseName;
+            string desc = config.description ?? "A bed with a custom design.";
 
-            Debug.Log($"[BedPrefabLoader] Registering prefab: {bedName} (Display: {displayName})");
+            // --- Bed Type bestimmen ---
+            TechType baseBedType = TechType.Bed1; // Default
+            if (!string.IsNullOrEmpty(config.bedType))
+            {
+                if (System.Enum.TryParse<TechType>(config.bedType, out var parsedType))
+                    baseBedType = parsedType;
+                else
+                    Debug.LogWarning($"[BedPrefabLoader] Unknown bedType '{config.bedType}', fallback auf Bed1.");
+            }
+            else
+            {
+                Debug.Log($"[BedPrefabLoader] Kein bedType in Config, verwende Bed1.");
+            }
+
+            Debug.Log($"[BedPrefabLoader] Registering prefab: {bedName} (Display: {displayName}, Base: {baseBedType})");
 
             // --- Nautilus Prefab Setup ---
             var prefabInfo = PrefabInfo.WithTechType(bedName, displayName, desc);
-            prefabInfo.WithIcon(SpriteManager.Get(TechType.Bed1));
+            prefabInfo.WithIcon(SpriteManager.Get(baseBedType));
             var prefab = new CustomPrefab(prefabInfo);
-            var bedClone = new CloneTemplate(prefabInfo, TechType.Bed1);
+            var bedClone = new CloneTemplate(prefabInfo, baseBedType);
 
             // --- Set Appearance/Textures ---
             bedClone.ModifyPrefab += gameObject =>
             {
                 Debug.Log($"[BedPrefabLoader] Customizing cloned vanilla bed prefab for: {bedName}");
 
-                // Load texture (matressTex is used for all)
+                // Load texture from config
                 Texture2D matressTex = null;
 
-                if (config?.texture != null)
+                if (!string.IsNullOrEmpty(config.texture))
                 {
                     string matressPath = Path.Combine(folder, config.texture);
                     if (File.Exists(matressPath))
@@ -99,16 +115,21 @@ public static class BedPrefabLoader
                     }
                     else
                     {
-                        Debug.Log($"[BedPrefabLoader] Matress texture specified in config but not found: {matressPath}");
+                        Debug.LogWarning($"[BedPrefabLoader] Matress texture specified in config but not found: {matressPath}");
                     }
                 }
-                if (matressTex == null)
+                else
                 {
-                    Debug.Log($"[BedPrefabLoader] Using main PNG as matress texture: {pngPath}");
-                    matressTex = LoadTextureFromFile(pngPath);
+                    Debug.LogWarning($"[BedPrefabLoader] No texture specified in config for {bedName}");
                 }
 
-                // --- Apply texture to Matress and Pillows ---
+                if (matressTex == null)
+                {
+                    Debug.LogWarning($"[BedPrefabLoader] No valid texture loaded for {bedName}, skipping texture assignment.");
+                    return;
+                }
+
+                // --- Apply texture to relevant renderers ---
                 var renderers = gameObject.GetComponentsInChildren<Renderer>(true);
                 Debug.Log($"[BedPrefabLoader] Found {renderers.Length} renderers for prefab: {bedName}");
 
@@ -117,10 +138,21 @@ public static class BedPrefabLoader
                     string rname = renderer.name.ToLowerInvariant();
                     Debug.Log($"[BedPrefabLoader] Renderer: {renderer.name}");
 
-                    // Apply matress texture to all relevant renderers
-                    if (rname.Contains("matress") 
-                        || rname.Contains("pillow01") || rname.Contains("pillow_01")
-                        || rname.Contains("pillow02") || rname.Contains("pillow_02"))
+                    bool apply = false;
+                    switch (baseBedType)
+                    {
+                        case TechType.Bed1:
+                            apply = rname.Contains("matress") || rname.Contains("pillow_01") || rname.Contains("pillow_02");
+                            break;
+                        case TechType.Bed2:
+                            apply = rname.Contains("matress") || rname.Contains("pillow_01") || rname.Contains("pillow_02") || rname.Contains("blanket");
+                            break;
+                        case TechType.NarrowBed:
+                            apply = rname.Contains("matress_narrow") || rname.Contains("pillow_01") || rname.Contains("blanket_narrow");
+                            break;
+                    }
+
+                    if (apply)
                     {
                         var mats = renderer.materials;
                         for (int i = 0; i < mats.Length; i++)
@@ -138,7 +170,7 @@ public static class BedPrefabLoader
 
             // --- Recipe Parsing ---
             var recipe = new List<Ingredient>();
-            if (config?.ingredients != null)
+            if (config.ingredients != null)
             {
                 Debug.Log($"[BedPrefabLoader] Parsing ingredients for {bedName}");
                 foreach (var ing in config.ingredients)
@@ -158,9 +190,8 @@ public static class BedPrefabLoader
             }
 
             // --- Register Prefab ---
-            // Unlock-TechType aus der Config lesen, sonst Bed1 als Fallback
             TechType unlockTechType = TechType.Bed1;
-            if (!string.IsNullOrEmpty(config?.unlockTechType) && System.Enum.TryParse<TechType>(config.unlockTechType, out var parsedUnlock))
+            if (!string.IsNullOrEmpty(config.unlockTechType) && System.Enum.TryParse<TechType>(config.unlockTechType, out var parsedUnlock))
             {
                 unlockTechType = parsedUnlock;
             }
