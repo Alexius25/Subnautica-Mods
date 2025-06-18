@@ -101,7 +101,7 @@ Here are the fields required in the Config.json
 | `texture`        | Filename of the bed’s texture PNG (must match your edited texture file).                                  |
 | `bedType`        | The bed model type, matching one of the predefined bed types (`"Bed1"`, `"Bed2"` or `"NarrowBed`")  |
 
-The Config File Could look like this:
+**Example Config.json:**
 
 ```json
 {
