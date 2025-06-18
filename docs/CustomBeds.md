@@ -43,7 +43,7 @@ To develop a bed pack for this mod, you’ll need to edit a texture (.png) file 
 
 </div>
 
-### Texture Editing Description
+### Texture Editing
 To guide you in editing the texture, refer to the image below.
 Each section of the image corresponds to a different part of the bed model in the game (pillow, matress and blanket).
 The Different Bed types have different Components.
