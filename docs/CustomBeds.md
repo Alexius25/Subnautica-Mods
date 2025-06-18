@@ -46,6 +46,16 @@ To develop a bed pack for this mod, you’ll need to edit a texture (.png) file 
 ### Texture Editing
 To guide you in editing the texture, refer to the image below.
 Each section of the image corresponds to a different part of the bed model in the game (pillow, matress and blanket).
+The Different Bed types have different Components.
+
+| Bed Type | Double Bed 1 (Bed1) | Double Bed 2 (Bed2) | Single Bed (NarrowBed) |
+|----------|---------------------|---------------------|------------------------|
+| Pillow 1 |         Yes         |         Yes         |           Yes          |
+| Pillow 2 |         Yes         |         Yes         |           No           |
+| Matress  |         Yes         |         Yes         |           Yes          |
+| Blanket  |          No         |         Yes         |           Yes          |
+
+**Note:** The second pillow is always a mirrored version of the first pillow.
 
 <div align=center>
    
