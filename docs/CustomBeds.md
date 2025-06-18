@@ -119,3 +119,5 @@ The Config File Could look like this:
   "bedType": "Bed1"
 }
 ```
+
+**A full List of TechTypes can be found [here](https://subnautica.fandom.com/wiki/Spawn_IDs_(Subnautica))**
