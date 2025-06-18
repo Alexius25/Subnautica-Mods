@@ -5,7 +5,7 @@
 
 <div align=center>
    
-<img width="200" src="images/CustomBedsUser1.jpg">
+<img width="400" src="images/CustomBedsUser1.jpg">
 
 </div>
 
