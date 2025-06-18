@@ -4,4 +4,4 @@
 
 1. Open the Settings Menu
 2. Choose the Mod Option at the Bottom
-![alt text for screen readers](/Subnautica-Mods/docs/images/CustomBedsUser1.png "Step 2")
+![Step 2 Image](docs/images/CustomBedsUser1.png "Step 2")
