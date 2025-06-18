@@ -1,2 +1,2 @@
 * [Start](Start.md)
-* [Custom Beds]()
+* [Custom Beds](/CustomBeds/index.md)
