@@ -25,3 +25,20 @@
 2. Extract your ZIP files into the folder (subfolders are supported)
 3. Restart the game
 4. That's it — enjoy your new beds!
+
+
+## Bed Developer Guide
+
+To develop a bed pack for this mod, you’ll need to edit a texture (.png) file and a JSON configuration file.
+
+### Requirements
+- A text editor, such as the pre-installed Notepad on Windows (I personally recommend [Visual Studio Code](https://code.visualstudio.com/) from Microsoft)
+- An image editor, like [GIMP](https://www.gimp.org/), [Photoshop](https://www.adobe.com/de/products/photoshop.html), or a similar program
+- A basic understanding of how to use the image and text editor
+- Original Texture from the Game:
+
+<div align=center>
+   
+<img src="images/CustomBedsTexture.png">
+
+</div>
