@@ -8,7 +8,7 @@
    
 <div align=center>
    
-<img width="200" src="../docs/images/CustomBedsUser1.jpg>
+<img width="200" src="../docs/images/CustomBedsUser1.jpg">
 
 </div>
 
