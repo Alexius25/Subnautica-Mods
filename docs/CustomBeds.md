@@ -1,14 +1,13 @@
 # Custom Beds
 ## User Guide
 
-### Automatic Bed-Pack Installation (Recommended)
-
 <div align=center>
    
 <img src="images/CustomBedsUser1.jpg">
 
 </div>
 
+### Automatic Bed-Pack Installation (Recommended)
 
 1. Open the Settings Menu
 2. Choose the Mods Option at the Bottom
