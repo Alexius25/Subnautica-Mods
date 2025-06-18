@@ -1,2 +1,2 @@
-- [Start](README.md)
-- [Custom Beds]()
+* [Start](README.md)
+* [Custom Beds]()
