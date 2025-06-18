@@ -55,7 +55,7 @@ The Different Bed types have different Components.
 | Matress  |         Yes         |         Yes         |           Yes          |
 | Blanket  |          No         |         Yes         |           Yes          |
 
-**Note:** The second pillow is always a mirrored version of the first pillow.
+**Note:** The second pillow is always a mirrored version of the first pillow. The Upper Pillow texture part is the bottom Side of the Pillow
 
 <div align=center>
    
