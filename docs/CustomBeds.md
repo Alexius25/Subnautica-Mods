@@ -99,7 +99,7 @@ Here are the fields required in the Config.json
 | `description`    | Short description of the bed, visible in the game UI.                                                     |
 | `ingredients`    | List of required crafting materials and their quantities.                                                 |
 | `texture`        | Filename of the bed’s texture PNG (must match your edited texture file).                                  |
-| `bedType`        | The bed model type, matching one of the predefined bed types (e.g., `"Bed1"`, `"Bed2"` or `"NarrowBed`")  |
+| `bedType`        | The bed model type, matching one of the predefined bed types (`"Bed1"`, `"Bed2"` or `"NarrowBed`")  |
 
 The Config File Could look like this:
 
