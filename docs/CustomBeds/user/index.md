@@ -5,4 +5,4 @@
 1. Open the Settings Menu
 2. Choose the Mods Option at the Bottom
    
-<img src="https://github.com/Alexius25/Subnautica-Mods/blob/25fe648f7f174703d34e14de1309494560ba3f79/docs/images/CustomBedsUser1.png" alt="Step2Image" style="height: 580px;"/>
+<img src="https://github.com/Alexius25/Subnautica-Mods/blob/25fe648f7f174703d34e14de1309494560ba3f79/docs/images/CustomBedsUser1.png" alt="Step2Image" style="height: 300px;"/>
