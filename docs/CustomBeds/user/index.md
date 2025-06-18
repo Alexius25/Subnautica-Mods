@@ -7,6 +7,7 @@
    
 <div align=center>
 <img width="200" src="./docs/images/CustomBedsUser1.jpg>
+
 </div>
 
 3. Unfold the CustomBed Config
