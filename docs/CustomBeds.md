@@ -9,6 +9,7 @@
 
 </div>
 
+
 1. Open the Settings Menu
 2. Choose the Mods Option at the Bottom
 3. Expand the CustomBed Config section.
