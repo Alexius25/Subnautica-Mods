@@ -43,7 +43,7 @@ To develop a bed pack for this mod, you’ll need to edit a texture (.png) file 
 
 </div>
 
-### Texture Editing
+### Texture Editing Guide
 To guide you in editing the texture, refer to the image below.
 Each section of the image corresponds to a different part of the bed model in the game (pillow, matress and blanket).
 The Different Bed types have different Components.
@@ -81,3 +81,22 @@ The Different Bed types have different Components.
 <img src="images/CustomBedShowcase1.jpg">
 
 </div>
+
+
+### Config File Guide
+
+To have your bed recognized by the mod, you must provide a configuration file named Config.json.
+This file contains crucial information the mod needs to properly register your bed.
+
+Here are the fields required in the Config.json
+
+| Field            | Description                                                                                               |   
+| ---------------- | ----------------------------------------------------------------------------------------------------------|
+| `techType`       | Unique identifier for your custom bed.                                                                    |
+| `unlockTechType` | The tech type required to unlock this bed in-game (e.g., `"Bed1"`).                                       |
+| `displayName`    | The name shown to players for your bed.                                                                   |
+| `name`           | Internal name of your bed (usually the same as `techType`).                                               |
+| `description`    | Short description of the bed, visible in the game UI.                                                     |
+| `ingredients`    | List of required crafting materials and their quantities.                                                 |
+| `texture`        | Filename of the bed’s texture PNG (must match your edited texture file).                                  |
+| `bedType`        | The bed model type, matching one of the predefined bed types (e.g., `"Bed1"`, `"Bed2"` or `"NarrowBed`")  |
