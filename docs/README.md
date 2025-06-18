@@ -1,6 +1,6 @@
-# <h1 align="center">Subnautica Mods</h1>
+# Subnautica Mods
 Infos and Documentation for all my Subnautica Mods
 
-## <h2 align="center">Current Mods</h1>
+## Current Mods
 - Subnautica Tool Config
 - Custom Beds
