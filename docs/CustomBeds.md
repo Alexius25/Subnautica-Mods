@@ -65,6 +65,7 @@ The Different Bed types have different Components.
 
 ### Texture Examples
 
+#### Example 1
 **Texture:**
 
 <div align=center>
