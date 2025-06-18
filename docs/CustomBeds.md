@@ -100,3 +100,22 @@ Here are the fields required in the Config.json
 | `ingredients`    | List of required crafting materials and their quantities.                                                 |
 | `texture`        | Filename of the bed’s texture PNG (must match your edited texture file).                                  |
 | `bedType`        | The bed model type, matching one of the predefined bed types (e.g., `"Bed1"`, `"Bed2"` or `"NarrowBed`")  |
+
+The Config File Could look like this:
+
+```json
+{
+  "techType": "TestBed4",
+  "unlockTechType": "Bed1",
+  "displayName": "TestBed4",
+  "name": "TestBed4",
+  "description": "TestBed4",
+  "ingredients": 
+  [
+    { "item": "Titanium", "amount": 2 },
+    { "item": "FiberMesh", "amount": 1 }
+  ],
+  "texture": "TestBed4.png",
+  "bedType": "Bed1"
+}
+```
