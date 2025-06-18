@@ -1,1 +1,3 @@
-<h1 align="center">CustomBeds</h1>
+# Custom Beds
+
+[User Guide](/CustomBeds/user/index.md)
