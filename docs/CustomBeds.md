@@ -105,9 +105,9 @@ Here are the fields required in the Config.json
 
 
 ### Folder Structure Example
-´´´
+```
 CustomBeds/
 ├─ TestBed4/
 │  ├─ Config.json
 │  ├─ TestBed4.png
-´´´
+```
