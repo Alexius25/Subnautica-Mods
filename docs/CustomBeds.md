@@ -103,11 +103,23 @@ Here are the fields required in the Config.json
 
 **A full List of TechTypes can be found [here](https://subnautica.fandom.com/wiki/Spawn_IDs_(Subnautica))**
 
+### Packaging your Bed-Pack
 
-### Folder Structure Example
+There are many ways to package your CustomBeds. Here are the Two best options:
+
+#### Packaging a Single Bed
+If you only have one Bed this Option is the Best. You want to make a folder in wich you have your Config.json and the texture (.png file)
+Heres an Example of how the Folder Structure could look like:
 ```
-CustomBeds/
-├─ TestBed4/
+BedName
+├─ Config.json
+├─ TextureName.png
+```
+
+Now you can use a programm like [Winrar](https://www.win-rar.com/start.html?&L=0) or [7-Zip](https://7-zip.org/) to make your Bed Folder into a ZIP that you can upload on [Nexus Mods](https://www.nexusmods.com/). Now the Folder Structure should look like this:
+```
+BedName.zip/
+├─ BedName/
 │  ├─ Config.json
-│  ├─ TestBed4.png
+│  ├─ TextureName.png
 ```
