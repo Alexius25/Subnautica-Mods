@@ -29,38 +29,26 @@
 
 ## Bed Developer Guide
 
-To develop a bed pack for this mod, you’ll need to edit a texture (.png) file and a JSON configuration file.
-If you have any questions message me on discord ("alexius25.")
+To develop a bed pack for this mod, you’ll need a few Images (.png) files and a JSON configuration file.
+**If you have any questions message me on discord ("alexius25.")**
 
 ### Requirements
 - A text editor, such as the pre-installed Notepad on Windows (I personally recommend [Visual Studio Code](https://code.visualstudio.com/) from Microsoft)
-- An image editor, like [GIMP](https://www.gimp.org/), [Photoshop](https://www.adobe.com/de/products/photoshop.html), or a similar program
-- A basic understanding of how to use the image and text editor
+- A basic understanding of how to use text editor
 
 ### Texture Editing Guide
-To guide you in editing the texture, refer to the image below.
-Each section of the image corresponds to a different part of the bed model in the game (pillow, matress and blanket).
+Each image corresponds to a different part of the bed model in the game (pillow, mattress and blanket).
 The Different Bed types have different Components.
 
 | Bed Type | Double Bed 1 (Bed1) | Double Bed 2 (Bed2) | Single Bed (NarrowBed) |
 |----------|---------------------|---------------------|------------------------|
 | Pillow 1 |         Yes         |         Yes         |           Yes          |
 | Pillow 2 |         Yes         |         Yes         |           No           |
-| Matress  |         Yes         |         Yes         |           Yes          |
+| Mattress |         Yes         |         Yes         |           Yes          |
 | Blanket  |          No         |         Yes         |           Yes          |
 
-**Notes:**
+**Note:**
    -  The second pillow is always a mirrored version of the first pillow.
-   -  You **Can** Just put an .png as your texture, it just doesnt look as good as when positioning it with an image editor
-   -  The Upper Pillow texture part is the bottom Side of the Pillow.
-   -  Please also ensure that the sides of the matress are covered with your image/texture.
-   -  Orient your Texture with this Template:
-
-<div align=center>
-   
-<img src="images/TextureGuideCustomBeds.png">
-
-</div>
 
 
 ### Config File Guide
@@ -70,32 +58,57 @@ This file contains crucial information the mod needs to properly register your b
 
 Here are the fields required in the Config.json
 
-| Field            | Description                                                                                               |   
-| ---------------- | ----------------------------------------------------------------------------------------------------------|
-| `techType`       | Unique identifier for your custom bed.                                                                    |
-| `unlockTechType` | The tech type required to unlock this bed in-game (e.g., `"Bed1"`).                                       |
-| `displayName`    | The name shown to players for your bed.                                                                   |
-| `name`           | Internal name of your bed (usually the same as `techType`).                                               |
-| `description`    | Short description of the bed, visible in the game UI.                                                     |
-| `ingredients`    | List of required crafting materials and their quantities.                                                 |
-| `texture`        | Filename of the bed’s texture PNG (must match your edited texture file).                                  |
-| `bedType`        | The bed model type, matching one of the predefined bed types (`"Bed1"`, `"Bed2"` or `"NarrowBed`")  |
+| Field                        | Description                                                                                               |   
+| -----------------------------| ----------------------------------------------------------------------------------------------------------|
+| `techType`                   | Unique identifier for your custom bed.                                                                    |
+| `unlockTechType`             | The tech type required to unlock this bed in-game (e.g., `"Bed1"`).                                       |
+| `displayName`                | The name shown to players for your bed.                                                                   |
+| `name`                       | Internal name of your bed (usually the same as `techType`).                                               |
+| `description`                | Short description of the bed, visible in the game UI.                                                     |
+| `ingredients`                | List of required crafting materials and their quantities.                                                 |
+| `pillowUpperTexture`         | Filename of the front of the Pillows Image/Texture                                                        |
+| `pillowLowerTexture`         | Filename of the back of the Pillows Image/Texture                                                         |
+| `blanketTexture`             | Filename of the Blankets Image/Texture                                                                    |
+| `mattressTexture`            | Filename of the Mattresses Image/Texture                                                                  |
+| `bedType`                    | The bed model type, matching one of the predefined bed types (`"Bed1"`, `"Bed2"` or `"NarrowBed`")        |
+
+**Note:**
+- No fields are strictly required in the Config.json.
+  
+| Field                 | Required? | Default if missing?                           |
+|-----------------------|-----------|-----------------------------------------------|
+| techType              | No        | Auto-generated unique name                    |
+| displayName           | No        | Uses `name`, else auto-generated name         |
+| name                  | No        | Only used if displayName missing              |
+| description           | No        | "A bed with a custom design."                 |
+| unlockTechType        | No        | "Bed1"                                        |
+| ingredients           | No        | FiberMesh x2, Titanium x1                     |
+| pillowUpperTexture    | No        | None (uses vanilla)                           |
+| pillowLowerTexture    | No        | None (uses vanilla)                           |
+| blanketTexture        | No        | None (uses vanilla)                           |
+| mattressTexture       | No        | None (uses vanilla)                           |
+| bedType               | No        | "Bed1"                                        |
+  
+- All the texture fields *can* be empty
+- All the texture fields can have the same Image file
 
 **Example Config.json:**
 
 ```json
 {
-  "techType": "TestBed4",
+  "techType": "TestBed",
+  "displayName": "TestBed",
+  "name": "TestBed",
+  "description": "This is a Test Bed",
   "unlockTechType": "Bed1",
-  "displayName": "TestBed4",
-  "name": "TestBed4",
-  "description": "TestBed4",
-  "ingredients": 
-  [
+  "ingredients": [
     { "item": "Titanium", "amount": 2 },
     { "item": "FiberMesh", "amount": 1 }
   ],
-  "texture": "TestBed4.png",
+  "pillowUpperTexture": "TestBedV2.png",
+  "pillowLowerTexture": "TestBedV2.png",
+  "blanketTexture": "TestBedV2.png",
+  "mattressTexture": "TestBedV2.png",
   "bedType": "Bed1"
 }
 ```
