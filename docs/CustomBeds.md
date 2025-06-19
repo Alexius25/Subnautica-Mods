@@ -111,7 +111,7 @@ There are many ways to package your CustomBeds. Here are the Two best options:
 If you only have one Bed this Option is the Best. You want to make a folder in wich you have your Config.json and the texture (.png file)
 Heres an Example of how the Folder Structure could look like:
 ```
-BedName
+BedName/
 ├─ Config.json
 ├─ TextureName.png
 ```
@@ -122,4 +122,36 @@ BedName.zip/
 ├─ BedName/
 │  ├─ Config.json
 │  ├─ TextureName.png
+```
+
+#### Packaging Multiple Beds
+If you only have multiple Beds you want to package in one ZIP this Option is the Best. You want to make a folder with the name of your bedpack and in this folder you make folders for each of your beds.
+Heres an Example of how the Folder Structure could look like:
+```
+BedPackName/
+├─ BedName1/
+│  ├─ Config.json
+│  ├─ TextureName.png
+├─ BedName2/
+│  ├─ Config.json
+│  ├─ TextureName.png
+├─ BedName3/
+│  ├─ Config.json
+│  ├─ TextureName.png
+```
+
+Now you can again use a programm like [Winrar](https://www.win-rar.com/start.html?&L=0) or [7-Zip](https://7-zip.org/) to make your Bed Folder into a ZIP that you can upload on [Nexus Mods](https://www.nexusmods.com/). Now the Folder Structure should look like this:
+
+```
+BedPackName.zip
+├─ BedPackName/
+│  ├─ BedName1/
+│  │  ├─ Config.json
+│  │  ├─ TextureName.png
+│  ├─ BedName2/
+│  │  ├─ Config.json
+│  │  ├─ TextureName.png
+│  ├─ BedName3/
+│  │  ├─ Config.json
+│  │  ├─ TextureName.png
 ```
