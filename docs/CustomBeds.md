@@ -35,13 +35,6 @@ To develop a bed pack for this mod, you’ll need to edit a texture (.png) file 
 - A text editor, such as the pre-installed Notepad on Windows (I personally recommend [Visual Studio Code](https://code.visualstudio.com/) from Microsoft)
 - An image editor, like [GIMP](https://www.gimp.org/), [Photoshop](https://www.adobe.com/de/products/photoshop.html), or a similar program
 - A basic understanding of how to use the image and text editor
-- [Original Texture](https://github.com/Alexius25/Subnautica-Mods/blob/ec30fbe29831993ab8b86968860a532ec7fdd0ef/docs/images/CustomBedsTexture.png) from the Game:
-
-<div align=center>
-   
-<img src="images/CustomBedsTexture.png">
-
-</div>
 
 ### Texture Editing Guide
 To guide you in editing the texture, refer to the image below.
