@@ -63,25 +63,6 @@ The Different Bed types have different Components.
 
 </div>
 
-### Texture Examples
-
-#### Example 1
-**Texture:**
-
-<div align=center>
-   
-<img src="images/TestBed4.png">
-
-</div>
-
-**How it looks In-Game:**
-
-<div align=center>
-   
-<img src="images/CustomBedShowcase1.jpg">
-
-</div>
-
 
 ### Config File Guide
 
