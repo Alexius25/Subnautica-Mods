@@ -30,7 +30,7 @@
 ## Bed Developer Guide
 
 To develop a bed pack for this mod, you’ll need to edit a texture (.png) file and a JSON configuration file.
-If you have any questions message me on discord (.alexius25)
+If you have any questions message me on discord ("alexius25.")
 
 ### Requirements
 - A text editor, such as the pre-installed Notepad on Windows (I personally recommend [Visual Studio Code](https://code.visualstudio.com/) from Microsoft)
