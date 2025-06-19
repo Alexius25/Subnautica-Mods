@@ -9,6 +9,6 @@
     { "item": "Titanium", "amount": 2 },
     { "item": "FiberMesh", "amount": 1 }
   ],
-  "texture": "TestBed4.png",
+  "texture": "TestBed1.png",
   "bedType": "Bed1"
 }
