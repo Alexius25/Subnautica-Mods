@@ -1,0 +1,16 @@
+{
+  "techType": "TestBedV2",
+  "displayName": "TestBedV2",
+  "name": "TestBedV2",
+  "description": "TestBedV2",
+  "unlockTechType": "Bed1",
+  "ingredients": [
+    { "item": "Titanium", "amount": 2 },
+    { "item": "FiberMesh", "amount": 1 }
+  ],
+  "pillowUpperTexture": "TestBedV2.png",
+  "pillowLowerTexture": "TestBedV2.png",
+  "blanketTexture": "TestBedV2.png",
+  "mattressTexture": "TestBedV2.png",
+  "bedType": "Bed1"
+}
