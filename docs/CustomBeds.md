@@ -73,6 +73,7 @@ Here are the fields required in the Config.json
 | `bedType`                    | The bed model type, matching one of the predefined bed types (`"Bed1"`, `"Bed2"` or `"NarrowBed`")        |
 
 **Note:**
+- All the texture fields can have the same Image file.
 - No fields are strictly required in the Config.json.
   
 | Field                 | Required? | Default if missing?                           |
@@ -88,9 +89,6 @@ Here are the fields required in the Config.json
 | blanketTexture        | No        | None (uses vanilla)                           |
 | mattressTexture       | No        | None (uses vanilla)                           |
 | bedType               | No        | "Bed1"                                        |
-  
-- All the texture fields *can* be empty
-- All the texture fields can have the same Image file
 
 **Example Config.json:**
 
@@ -117,7 +115,7 @@ Here are the fields required in the Config.json
 
 ### Packaging your Bed-Pack
 
-There are many ways to package your CustomBeds. Here are the Two best options:
+There are two main ways to package your CustomBeds:
 
 #### Packaging a Single Bed
 If you only have one Bed this Option is the Best. You want to make a folder in wich you have your Config.json and the texture (.png file)
