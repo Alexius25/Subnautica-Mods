@@ -102,3 +102,12 @@ Here are the fields required in the Config.json
 ```
 
 **A full List of TechTypes can be found [here](https://subnautica.fandom.com/wiki/Spawn_IDs_(Subnautica))**
+
+
+### Folder Structure Example
+´´´
+CustomBeds/
+├─ TestBed4/
+│  ├─ Config.json
+│  ├─ TestBed4.png
+´´´
