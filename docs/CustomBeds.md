@@ -51,7 +51,7 @@ The Different Bed types have different Components.
 
 **Notes:**
    -  The second pillow is always a mirrored version of the first pillow.
-   -  You **Can** Just put an .png as your texture, it just doesnt look as good as when editing the texture
+   -  You **Can** Just put an .png as your texture, it just doesnt look as good as when positioning it with an image editor
    -  The Upper Pillow texture part is the bottom Side of the Pillow.
    -  Please also ensure that the sides of the matress are covered with your image/texture.
    -  Orient your Texture with this Template:
