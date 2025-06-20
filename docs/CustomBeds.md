@@ -54,6 +54,21 @@ Different bed types have different components:
 **Note:**  
 - The second pillow is always a mirrored version of the first pillow.
 
+#### Image Information
+
+The Aspect Ratio for the Provided Parts:
+
+| Image/Region         | Width (px) | Height (px) | Aspect Ratio (Width/Height) | Ratio (X:1) |
+|----------------------|------------|-------------|-----------------------------|-------------|
+| pillowUpperTexture   | 335        | 535         | 0.63                        | 0.63:1      |
+| pillowLowerTexture   | 335        | 272         | 1.23                        | 1.23:1      |
+| blanketTexture       | 688        | 255         | 2.70                        | 2.70:1      |
+| mattressTexture      | 648        | 793         | 0.82                        | 0.82:1      |
+
+**Note:**
+The Mod automaticly resizes and crops your provided images to fit into the part of the texture, but for best results, your source images should match these aspect ratios as closely as possible to avoid cropping important parts of your image. Aspect Fill is used to automaticly resizes and crops your provided images.
+
+
 ---
 
 ### Config File Guide
