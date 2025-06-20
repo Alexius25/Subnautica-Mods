@@ -54,7 +54,7 @@ Different bed types have different components:
 **Note:**  
 - The second pillow is always a mirrored version of the first pillow.
 
-#### Image Information
+### Image Information
 
 The Aspect Ratio for the Provided Parts:
 
