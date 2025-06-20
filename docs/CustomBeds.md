@@ -41,6 +41,7 @@ To develop a bed pack for this mod, you’ll need a few image files (`.png`) and
 
 ### Texture Editing Guide
 
+You place your Images in the same folder as your Config.json. You rename the images so they are individual (e.g. BedName_PillowUpper.png, BedName_PillowLower.png, ...)
 Each image corresponds to a different part of the bed model in the game (pillow, mattress, and blanket).  
 Different bed types have different components:
 
