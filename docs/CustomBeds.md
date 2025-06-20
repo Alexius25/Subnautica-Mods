@@ -83,7 +83,7 @@ This file contains crucial information the mod uses to register your bed properl
 | Field                 | Required? | Default Value                          |
 |----------------------|-----------|----------------------------------------|
 | `techType`           | No        | Auto-generated unique name             |
-| `displayName`        | No        | Uses `name`, or auto-generated name    |
+| `displayName`        | No        | Uses `TechType`, or auto-generated name|
 | `description`        | No        | "A bed with a custom design."          |
 | `unlockTechType`     | No        | `"Bed1"`                               |
 | `ingredients`        | No        | 2x Fiber Mesh, 1x Titanium             |
