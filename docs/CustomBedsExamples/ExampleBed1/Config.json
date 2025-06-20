@@ -1,7 +1,6 @@
 {
   "techType": "TestBedV2",
   "displayName": "TestBedV2",
-  "name": "TestBedV2",
   "description": "TestBedV2",
   "unlockTechType": "Bed1",
   "ingredients": [
