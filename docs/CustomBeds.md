@@ -80,10 +80,10 @@ This file contains crucial information the mod uses to register your bed properl
 - All texture fields can use the same image file.
 - No fields are strictly required — default values will be used if they’re missing.
 
-| Field                 | Required? | Default Value                          |
+| Field                | Required? | Default Value                          |
 |----------------------|-----------|----------------------------------------|
 | `techType`           | No        | Auto-generated unique name             |
-| `displayName`        | No        | Uses `TechType`, or auto-generated name|
+| `displayName`        | No        | Uses `techType`, or auto-generated name|
 | `description`        | No        | "A bed with a custom design."          |
 | `unlockTechType`     | No        | `"Bed1"`                               |
 | `ingredients`        | No        | 2x Fiber Mesh, 1x Titanium             |
