@@ -124,6 +124,8 @@ This file contains crucial information the mod uses to register your bed properl
 
 There are two ways to package your Custom Beds:
 
+---
+
 #### Option 1: Single Bed
 If you're distributing just one bed, this is the recommended method.
 Create a folder containing your Config.json and .png texture file(s).
@@ -140,6 +142,7 @@ BedName.zip/
 │  ├─ Config.json
 │  ├─ TextureName.png
 ```
+---
 
 #### Option 2: Multiple Beds
 If you're packaging multiple beds, create a folder for your Bed Pack, and inside it, create one folder for each bed.
