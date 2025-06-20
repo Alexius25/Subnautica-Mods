@@ -68,7 +68,6 @@ This file contains crucial information the mod uses to register your bed properl
 | `techType`             | Unique identifier for your custom bed.                                     |
 | `unlockTechType`       | The tech type required to unlock this bed in-game (e.g., `"Bed1"`).        |
 | `displayName`          | The name shown to players for your bed.                                    |
-| `name`                 | Internal name of your bed (usually the same as `techType`).                |
 | `description`          | A short description of the bed, shown in the UI.                           |
 | `ingredients`          | List of required crafting materials and their quantities.                  |
 | `pillowUpperTexture`   | Filename for the front of the pillow texture.                              |
@@ -85,7 +84,6 @@ This file contains crucial information the mod uses to register your bed properl
 |----------------------|-----------|----------------------------------------|
 | `techType`           | No        | Auto-generated unique name             |
 | `displayName`        | No        | Uses `name`, or auto-generated name    |
-| `name`               | No        | Used only if `displayName` is missing  |
 | `description`        | No        | "A bed with a custom design."          |
 | `unlockTechType`     | No        | `"Bed1"`                               |
 | `ingredients`        | No        | 2x Fiber Mesh, 1x Titanium             |
@@ -103,7 +101,6 @@ This file contains crucial information the mod uses to register your bed properl
 {
   "techType": "TestBed",
   "displayName": "Test Bed",
-  "name": "TestBed",
   "description": "This is a test bed.",
   "unlockTechType": "Bed1",
   "ingredients": [
