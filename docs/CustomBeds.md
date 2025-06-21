@@ -199,7 +199,7 @@ BedPackName.zip
 │  │  ├─ Texture2Name.png
 │  │  ├─ Texture3Name.png
 │  │  ├─ Texture4Name.png
-│  │  ├─ BedName2/
+│  ├─ BedName2/
 │  │  ├─ Config.json
 │  │  ├─ Texture1Name.png
 │  │  ├─ Texture2Name.png
