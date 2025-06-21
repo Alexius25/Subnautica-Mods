@@ -57,6 +57,7 @@ Different bed types have different components:
 
 ### Image Information
 
+This here is for more advanced beds.
 The Aspect Ratio for the Provided Parts:
 
 | Image/Region         | Width (px) | Height (px) | Aspect Ratio (Width/Height) | Ratio (X:1) |
@@ -146,14 +147,20 @@ Create a folder containing your Config.json and .png texture file(s).
 ```
 BedName/
 ├─ Config.json
-├─ TextureName.png
+|─ Texture1Name.png
+├─ Texture2Name.png
+|─ Texture3Name.png
+├─ Texture4Name.png
 ```
 Then use a program like [WinRAR](https://www.win-rar.com/start.html?&L=0) or [7-Zip](https://7-zip.org/) to compress the folder into a `.zip` file. The final structure should look like:
 ```
 BedName.zip/
 ├─ BedName/
 │  ├─ Config.json
-│  ├─ TextureName.png
+│  ├─ Texture1Name.png
+│  ├─ Texture2Name.png
+│  ├─ Texture3Name.png
+│  ├─ Texture4Name.png
 ```
 ---
 
@@ -163,29 +170,47 @@ If you're packaging multiple beds, create a folder for your Bed Pack, and inside
 BedPackName/
 ├─ BedName1/
 │  ├─ Config.json
-│  ├─ TextureName.png
+│  ├─ Texture1Name.png
+│  ├─ Texture2Name.png
+│  ├─ Texture3Name.png
+│  ├─ Texture4Name.png
 ├─ BedName2/
 │  ├─ Config.json
-│  ├─ TextureName.png
+│  ├─ Texture1Name.png
+│  ├─ Texture2Name.png
+│  ├─ Texture3Name.png
+│  ├─ Texture4Name.png
 ├─ BedName3/
 │  ├─ Config.json
-│  ├─ TextureName.png
+│  ├─ Texture1Name.png
+│  ├─ Texture2Name.png
+│  ├─ Texture3Name.png
+│  ├─ Texture4Name.png
 ```
 
-Compress the MyBedPack folder into a ZIP file. The structure should look like:
+Compress the Bedpack folder into a ZIP file. The structure should look like:
 
 ```
 BedPackName.zip
 ├─ BedPackName/
 │  ├─ BedName1/
 │  │  ├─ Config.json
-│  │  ├─ TextureName.png
-│  ├─ BedName2/
+│  │  ├─ Texture1Name.png
+│  │  ├─ Texture2Name.png
+│  │  ├─ Texture3Name.png
+│  │  ├─ Texture4Name.png
+│  │  ├─ BedName2/
 │  │  ├─ Config.json
-│  │  ├─ TextureName.png
+│  │  ├─ Texture1Name.png
+│  │  ├─ Texture2Name.png
+│  │  ├─ Texture3Name.png
+│  │  ├─ Texture4Name.png
 │  ├─ BedName3/
 │  │  ├─ Config.json
-│  │  ├─ TextureName.png
+│  │  ├─ Texture1Name.png
+│  │  ├─ Texture2Name.png
+│  │  ├─ Texture3Name.png
+│  │  ├─ Texture4Name.png
 ```
 
 **Note:** You can find working examples [here](https://github.com/Alexius25/Subnautica-Mods/tree/c7cf3501457c6fd38f1911b9b1a70161fe48ee39/docs/CustomBedsExamples)
