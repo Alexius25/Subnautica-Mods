@@ -214,3 +214,21 @@ BedPackName.zip
 ```
 
 **Note:** You can find working examples [here](https://github.com/Alexius25/Subnautica-Mods/tree/gh-pages/docs/CustomBedsExamples)
+
+
+### Releasing Your Mod on Nexus Mods
+
+There are a few important things to keep in mind when releasing your Bedpack on Nexus Mods.
+
+First, the Mod Category:
+<div align="center"> <img src="images/NexusModsGuide1CustomBeds.png"> </div>
+
+Please use the category Custom Beds for easier identification of custom beds.
+
+Second, the Requirements:
+<div align="center"> <img src="images/NexusModsGuide2CustomBeds.png"> </div>
+
+Now click on Custom Beds. It should now look like this:
+<div align="center"> <img src="images/NexusModsGuide3CustomBeds.png"> </div>
+
+The rest is up to you. Happy modding!
