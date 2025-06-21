@@ -7,9 +7,9 @@
     { "item": "Titanium", "amount": 2 },
     { "item": "FiberMesh", "amount": 1 }
   ],
-  "pillowUpperTexture": "TestBedV2.png",
-  "pillowLowerTexture": "TestBedV2.png",
-  "blanketTexture": "TestBedV2.png",
-  "mattressTexture": "TestBedV2.png",
+  "pillowUpperTexture": "ExampleBed.png",
+  "pillowLowerTexture": "ExampleBed.png",
+  "blanketTexture": "ExampleBed.png",
+  "mattressTexture": "ExampleBed.png",
   "bedType": "Bed1"
 }
