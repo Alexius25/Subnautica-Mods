@@ -213,4 +213,4 @@ BedPackName.zip
 │  │  ├─ Texture4Name.png
 ```
 
-**Note:** You can find working examples [here](https://github.com/Alexius25/Subnautica-Mods/tree/c7cf3501457c6fd38f1911b9b1a70161fe48ee39/docs/CustomBedsExamples)
+**Note:** You can find working examples [here](https://github.com/Alexius25/Subnautica-Mods/tree/gh-pages/docs/CustomBedsExamples)
