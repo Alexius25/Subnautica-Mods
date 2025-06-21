@@ -231,4 +231,5 @@ Second, the Requirements:
 Now click on Custom Beds. It should now look like this:
 <div align="center"> <img src="images/NexusModsGuide3CustomBeds.png"> </div>
 
-The rest is up to you. Happy modding!
+
+**The rest is up to you. Happy modding!**
