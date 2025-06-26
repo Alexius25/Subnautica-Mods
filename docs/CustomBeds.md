@@ -57,8 +57,7 @@ Different bed types have different components:
 
 ### Image Information
 
-This here is for more advanced beds.
-The Aspect Ratio for the Provided Parts:
+This here is for more advanced beds:
 
 | Image/Region         | Width (px) | Height (px) |
 |----------------------|------------|-------------|
