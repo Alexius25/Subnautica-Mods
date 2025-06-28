@@ -21,10 +21,10 @@ public static class BedPrefabLoader
     // These rectangles define the area (in pixels) on the final bed texture
     // where each part (pillow, blanket, mattress) will be drawn.
     // Adjust these positions and sizes as needed to match your texture layout!
-    private static readonly Rect PillowUpperRect = new Rect(0, 252, 335, 535);
-    private static readonly Rect PillowLowerRect = new Rect(0, 752, 335, 272);
-    private static readonly Rect BlanketRect = new Rect(335, 769, 688, 255);
-    private static readonly Rect MattressRect = new Rect(375, 1, 648, 793);
+    private static readonly Rect PillowUpperRect = new Rect(0, 500, 335, 270);
+    private static readonly Rect PillowLowerRect = new Rect(0, 750, 335, 270);
+    private static readonly Rect BlanketRect = new Rect(335, 770, 690, 255);
+    private static readonly Rect MattressRect = new Rect(375, 1, 650, 795);
 
     /// <summary>
     /// Represents the configuration for a custom bed, as loaded from Config.json.
@@ -33,7 +33,6 @@ public static class BedPrefabLoader
     {
         public string techType;                 // Custom TechType for this bed (optional)
         public string displayName;              // Name to show in the build menu
-        public string name;                     // Internal name (optional)
         public string description;              // Item description
         public string unlockTechType;           // TechType required to unlock this bed (optional)
         public List<IngredientConfig> ingredients; // Crafting recipe ingredients
@@ -192,7 +191,7 @@ public static class BedPrefabLoader
 
             // If techType not specified, auto-generate a unique name
             string bedName = config.techType ?? $"CustomBed_{index}";
-            string displayName = config.displayName ?? config.name ?? bedName;
+            string displayName = config.displayName ?? bedName;
             string desc = config.description ?? "A bed with a custom design.";
 
             // Determine which vanilla bed to clone as a base
@@ -252,7 +251,7 @@ public static class BedPrefabLoader
                     return;
                 }
 
-                // Workaround: Lesbare Kopie erzeugen, falls nötig
+                // Copie Texture2D to ensure we can modify it (if it's not readable, clone it)
                 if (!baseTex.isReadable)
                     baseTex = MakeReadable(baseTex);
 
