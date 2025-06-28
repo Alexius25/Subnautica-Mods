@@ -41,6 +41,7 @@ public static class BedPrefabLoader
         public string blanketTexture;           // Filename for blanket texture (optional)
         public string mattressTexture;          // Filename for mattress texture (optional)
         public string bedType;                  // Which vanilla bed type to clone ("Bed1", "Bed2", "NarrowBed")
+        public bool? disableBlanket;            // Changed to nullable and renamed
     }
 
     /// <summary>
@@ -281,6 +282,31 @@ public static class BedPrefabLoader
                             newMat.SetTexture("_MainTex", combined);
                             mat.CopyPropertiesFromMaterial(newMat); // Overwrite properties in-place
                             Debug.Log($"[BedPrefabLoader] Applied combined texture to material: {mat.name} ({renderer.name})");
+                        }
+                    }
+                }
+
+                // --- Blanket mesh deletion logic ---
+                if (config.disableBlanket == true)
+                {
+                    // Try to find and destroy the blanket mesh
+                    var blanket = gameObject.transform.Find("blanket");
+                    if (blanket != null)
+                    {
+                        Object.Destroy(blanket.gameObject);
+                        Debug.Log($"[BedPrefabLoader] Blanket mesh deleted for {bedName}");
+                    }
+                    else
+                    {
+                        // Try to find by partial name if exact match fails
+                        foreach (Transform child in gameObject.GetComponentsInChildren<Transform>(true))
+                        {
+                            if (child.name.ToLower().Contains("blanket"))
+                            {
+                                Object.Destroy(child.gameObject);
+                                Debug.Log($"[BedPrefabLoader] Blanket mesh (found by partial name) deleted for {bedName}: {child.name}");
+                                break;
+                            }
                         }
                     }
                 }
