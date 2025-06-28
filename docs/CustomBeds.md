@@ -81,16 +81,17 @@ This file contains crucial information the mod uses to register your bed properl
 
 | Field                  | Description                                                                 |
 |------------------------|-----------------------------------------------------------------------------|
-| `techType`             | Unique identifier for your custom bed.                                     |
-| `unlockTechType`       | The tech type required to unlock this bed in-game (e.g., `"Bed1"`).        |
-| `displayName`          | The name shown to players for your bed.                                    |
-| `description`          | A short description of the bed, shown in the UI.                           |
-| `ingredients`          | List of required crafting materials and their quantities.                  |
-| `pillowUpperTexture`   | Filename for the front of the pillow texture.                              |
-| `pillowLowerTexture`   | Filename for the back of the pillow texture.                               |
-| `blanketTexture`       | Filename for the blanket texture.                                          |
-| `mattressTexture`      | Filename for the mattress texture.                                         |
-| `bedType`              | One of the supported models: `"Bed1"`, `"Bed2"`, or `"NarrowBed"`.         |
+| `techType`             | Unique identifier for your custom bed.                                      |
+| `unlockTechType`       | The tech type required to unlock this bed in-game (e.g., `"Bed1"`).         |
+| `displayName`          | The name shown to players for your bed.                                     |
+| `description`          | A short description of the bed, shown in the UI.                            |
+| `ingredients`          | List of required crafting materials and their quantities.                   |
+| `pillowUpperTexture`   | Filename for the front of the pillow texture.                               |
+| `pillowLowerTexture`   | Filename for the back of the pillow texture.                                |
+| `blanketTexture`       | Filename for the blanket texture.                                           |
+| `mattressTexture`      | Filename for the mattress texture.                                          |
+| `bedType`              | One of the supported models: `"Bed1"`, `"Bed2"`, or `"NarrowBed"`.          |
+| `disableBlanket`       | Disable the Blanket for `"Bed2"` or `"NarrowBed"`.                          |    
 
 **Note:**
 - All texture fields can use the same image file.
@@ -108,6 +109,7 @@ This file contains crucial information the mod uses to register your bed properl
 | `blanketTexture`     | No        | None (uses vanilla)                    |
 | `mattressTexture`    | No        | None (uses vanilla)                    |
 | `bedType`            | No        | `"Bed1"`                               |
+| `disableBlanket`     | No        | `false"`                               |
 
 ---
 
@@ -127,7 +129,8 @@ This file contains crucial information the mod uses to register your bed properl
   "pillowLowerTexture": "TestBedV2.png",
   "blanketTexture": "TestBedV2.png",
   "mattressTexture": "TestBedV2.png",
-  "bedType": "Bed1"
+  "bedType": "Bed1",
+  "disableBlanket": false
 }
 ```
 
