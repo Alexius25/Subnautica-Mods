@@ -2,6 +2,7 @@
   "techType": "ExampleBed",
   "displayName": "Example Bed",
   "description": "An Example Bed that uses Custom Beds",
+  "icon": "ExampleBed.png",
   "unlockTechType": "Bed1",
   "ingredients": [
     { "item": "Titanium", "amount": 2 },
