@@ -85,6 +85,7 @@ This file contains crucial information the mod uses to register your bed properl
 | `unlockTechType`       | The tech type required to unlock this bed in-game (e.g., `"Bed1"`).         |
 | `displayName`          | The name shown to players for your bed.                                     |
 | `description`          | A short description of the bed, shown in the UI.                            |
+| `icon`                 | Filename of the icon.                                                       |
 | `ingredients`          | List of required crafting materials and their quantities.                   |
 | `pillowUpperTexture`   | Filename for the front of the pillow texture.                               |
 | `pillowLowerTexture`   | Filename for the back of the pillow texture.                                |
@@ -103,6 +104,7 @@ This file contains crucial information the mod uses to register your bed properl
 | `displayName`        | No        | Uses `techType`, or auto-generated name|
 | `description`        | No        | "A bed with a custom design."          |
 | `unlockTechType`     | No        | `"Bed1"`                               |
+| `icon`               | No        | Uses Icon of `bedType`                 |
 | `ingredients`        | No        | 2x Fiber Mesh, 1x Titanium             |
 | `pillowUpperTexture` | No        | None (uses vanilla)                    |
 | `pillowLowerTexture` | No        | None (uses vanilla)                    |
@@ -121,14 +123,15 @@ This file contains crucial information the mod uses to register your bed properl
   "displayName": "Test Bed",
   "description": "This is a test bed.",
   "unlockTechType": "Bed1",
+  "icon": "TestBed.png"
   "ingredients": [
     { "item": "Titanium", "amount": 2 },
     { "item": "FiberMesh", "amount": 1 }
   ],
-  "pillowUpperTexture": "TestBedV2.png",
-  "pillowLowerTexture": "TestBedV2.png",
-  "blanketTexture": "TestBedV2.png",
-  "mattressTexture": "TestBedV2.png",
+  "pillowUpperTexture": "TestBed.png",
+  "pillowLowerTexture": "TestBed.png",
+  "blanketTexture": "TestBed.png",
+  "mattressTexture": "TestBed.png",
   "bedType": "Bed1",
   "disableBlanket": false
 }
