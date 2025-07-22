@@ -123,7 +123,7 @@ This file contains crucial information the mod uses to register your bed properl
   "displayName": "Test Bed",
   "description": "This is a test bed.",
   "unlockTechType": "Bed1",
-  "icon": "TestBed.png"
+  "icon": "TestBed.png",
   "ingredients": [
     { "item": "Titanium", "amount": 2 },
     { "item": "FiberMesh", "amount": 1 }
